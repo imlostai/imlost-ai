@@ -1,6 +1,3 @@
-// imlost.ai – Phase 2: Brand Identity Crisis Generator™
-// Sarcastic interactive quiz, no email capture (yet)
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './index.css';
@@ -62,7 +59,7 @@ function CrisisQuiz() {
     if (cultScore >= 2) {
       setResult("You’re building a brand cult. Congrats. Just don’t forget the merch.");
     } else if (chaosScore >= 2) {
-      setResult("You’re fueled by chaos and TikTok trends. We respect the hustle (barely).”);
+      setResult("You’re fueled by chaos and TikTok trends. We respect the hustle (barely).");
     } else {
       setResult("You’re a wandering founder with good taste. You’ll be fine. Probably.");
     }
@@ -130,9 +127,6 @@ function App() {
         </ul>
       </nav>
 
-      {/* Hero Section, About, Services... (Already added in previous updates) */}
-
-      {/* Crisis Quiz */}
       <CrisisQuiz />
 
       <section id="cta" className="text-center px-6 py-20 bg-black">
