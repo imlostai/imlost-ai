@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
+import LostLab from './pages/LostLab';
 
 const pageVariants = {
   initial: {
@@ -82,6 +83,12 @@ export default function App() {
             <Services />
           </motion.div>
         } />
+        <Route path="/lab" element={
+          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
+            <LostLab />
+         </motion.div>
+        } />
+
       </Routes>
     </div>
   );
