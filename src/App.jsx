@@ -34,26 +34,10 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={
-          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
-            <Home />
-          </motion.div>
-        } />
-        <Route path="/about" element={
-          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
-            <About />
-          </motion.div>
-        } />
-        <Route path="/services" element={
-          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
-            <Services />
-          </motion.div>
-        } />
-        <Route path="/quiz" element={
-          <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
-            <Quiz />
-          </motion.div>
-        } />
+        <Route path="/" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}><Home /></motion.div>} />
+        <Route path="/about" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}><About /></motion.div>} />
+        <Route path="/services" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}><Services /></motion.div>} />
+        <Route path="/quiz" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}><Quiz /></motion.div>} />
       </Routes>
     </AnimatePresence>
   );
