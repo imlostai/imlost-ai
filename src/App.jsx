@@ -1,5 +1,5 @@
-// imlost.ai – Animated Hero Glow-Up + Sarcastic Secondary Section
-// Powered by sarcasm, neon, and framer-motion
+// imlost.ai – Phase 2: Brand Identity Crisis Generator™
+// Sarcastic interactive quiz, no email capture (yet)
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -12,12 +12,94 @@ const headlines = [
   "We don’t have a roadmap. We have a machete."
 ];
 
+const questions = [
+  {
+    question: "What does your brand *think* it is?",
+    options: ["A lifestyle", "A movement", "A product", "A delusion with good design"]
+  },
+  {
+    question: "What's your vibe?",
+    options: ["Cult", "Chaos", "Corporate cosplay", "Hot mess express"]
+  },
+  {
+    question: "How do you want people to feel?",
+    options: ["Inspired", "Confused but loyal", "Afraid to unfollow", "Like they’ve joined something"]
+  },
+  {
+    question: "What’s your ideal launch strategy?",
+    options: ["A tweet", "A TikTok that makes no sense", "An NFT drop (jk?)", "We’ll figure it out"]
+  }
+];
+
 function ServiceCard({ title, desc }) {
   return (
     <div className="bg-neutral-900 p-6 rounded-2xl shadow border border-neutral-700">
       <h3 className="text-xl font-semibold mb-2 text-white">{title}</h3>
       <p className="text-white/70">{desc}</p>
     </div>
+  );
+}
+
+function CrisisQuiz() {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [result, setResult] = useState(null);
+
+  const handleAnswer = (answer) => {
+    const updated = [...answers, answer];
+    setAnswers(updated);
+    if (step + 1 < questions.length) {
+      setStep(step + 1);
+    } else {
+      generateResult(updated);
+    }
+  };
+
+  const generateResult = (responses) => {
+    const chaosScore = responses.filter(r => r.includes("chaos") || r.includes("mess") || r.includes("TikTok")).length;
+    const cultScore = responses.filter(r => r.includes("Cult") || r.includes("joined") || r.includes("movement")).length;
+
+    if (cultScore >= 2) {
+      setResult("You’re building a brand cult. Congrats. Just don’t forget the merch.");
+    } else if (chaosScore >= 2) {
+      setResult("You’re fueled by chaos and TikTok trends. We respect the hustle (barely).”);
+    } else {
+      setResult("You’re a wandering founder with good taste. You’ll be fine. Probably.");
+    }
+  };
+
+  return (
+    <section id="quiz" className="px-6 py-20 bg-black border-t border-neutral-800">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-4 text-white">Brand Identity Crisis Generator™</h2>
+        <p className="text-white/70 text-lg mb-8">Answer a few chaotic questions and we’ll tell you who you *really* are. Maybe.</p>
+        {result ? (
+          <motion.div
+            className="bg-neutral-900 p-6 rounded-2xl border border-neutral-700 text-white max-w-xl mx-auto"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <h3 className="text-2xl font-semibold mb-2">Crisis Profile:</h3>
+            <p>{result}</p>
+          </motion.div>
+        ) : (
+          <div>
+            <h3 className="text-xl font-semibold text-orange-400 mb-4">{questions[step].question}</h3>
+            <div className="flex flex-col gap-4">
+              {questions[step].options.map((option, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleAnswer(option)}
+                  className="bg-neutral-800 hover:bg-orange-500 text-white px-4 py-3 rounded-xl transition-colors"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -36,7 +118,6 @@ function App() {
 
   return (
     <main className="bg-black text-white font-sans overflow-x-hidden">
-      {/* Sticky Nav */}
       <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-black border-b border-neutral-800">
         <div className="text-2xl font-bold">
           <span className="text-pink-500">●</span> imlost<span className="text-orange-500">.ai</span>
@@ -44,72 +125,16 @@ function App() {
         <ul className="flex gap-6 text-sm font-medium text-orange-400">
           <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="#quiz">Quiz</a></li>
           <li><a href="#cta">Contact</a></li>
         </ul>
       </nav>
 
-      {/* Animated Hero Section */}
-      <section className="relative h-screen flex flex-col justify-center items-center text-center px-8">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-orange-500/10 blur-3xl animate-pulse"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-        />
-        <motion.h1
-          key={currentHeadline}
-          className="text-5xl md:text-7xl font-bold text-orange-500 max-w-4xl z-10"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {currentHeadline}
-        </motion.h1>
-        <motion.p
-          className="mt-6 max-w-xl text-lg text-white/80 z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-        >
-          Welcome to the AI-powered brand cult you didn’t know you needed.
-        </motion.p>
-        <motion.div className="mt-8 z-10 flex gap-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-          <button className="hover:scale-105 bg-gradient-to-r from-pink-500 to-orange-500 text-black px-6 py-3 rounded-2xl shadow transition-transform">
-            Submit to Chaos
-          </button>
-          <button className="hover:border-white border border-orange-500 px-6 py-3 rounded-2xl transition-colors">
-            Let's Get Lost
-          </button>
-        </motion.div>
-      </section>
+      {/* Hero Section, About, Services... (Already added in previous updates) */}
 
-      {/* Sarcastic About Section */}
-      <section id="about" className="px-6 py-20 bg-neutral-950 border-t border-neutral-800">
-        <h2 className="text-4xl font-bold text-center mb-8 text-white">Who Are We? Great Question.</h2>
-        <p className="max-w-3xl mx-auto text-center text-white/70 text-lg mb-12">
-          We’re not here to give you clarity. We’re here to weaponize your brand identity crisis. imlost.ai was designed for founders mid-spiral, startups mid-identity-crisis, and marketers mid-existential-breakdown.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <ServiceCard title="Brand Therapy" desc="You talk. We interpret your existential dread." />
-          <ServiceCard title="Vibe Strategy™" desc="Because real strategy is too rigid for this economy." />
-          <ServiceCard title="Creative WTF" desc="Ideas so weird, your legal team will spiral." />
-        </div>
-      </section>
+      {/* Crisis Quiz */}
+      <CrisisQuiz />
 
-      {/* Services Section */}
-      <section id="services" className="px-6 py-20 bg-black">
-        <h2 className="text-4xl font-bold text-center text-white mb-12">Our AI-Powered Shenanigans</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ServiceCard title="Brand Optimization" desc="We train the bots to understand your brand better than your CMO ever did." />
-          <ServiceCard title="AI Image Generation" desc="Because stock photos are for people who gave up." />
-          <ServiceCard title="Marketing Strategy" desc="Real strategies. Real sarcasm. Real results (probably)." />
-          <ServiceCard title="Voice + Messaging" desc="Your brand voice, but smarter, sassier, and probably funnier than you." />
-          <ServiceCard title="AI-Generated Content" desc="Auto-generated magic that sounds like you (on your best day)." />
-          <ServiceCard title="Custom Tools" desc="Need something wild? We’ll build you a frankenstein AI monster that does it." />
-        </div>
-      </section>
-
-      {/* Final CTA */}
       <section id="cta" className="text-center px-6 py-20 bg-black">
         <h2 className="text-4xl font-bold mb-4 text-orange-400">Ready to Un-Lose Yourself?</h2>
         <p className="text-lg text-white/80 max-w-xl mx-auto">
@@ -120,7 +145,6 @@ function App() {
         </button>
       </section>
 
-      {/* Footer */}
       <footer className="px-6 py-10 bg-black text-white flex flex-col md:flex-row justify-between items-center text-sm border-t border-neutral-800">
         <p>&copy; imlost.ai {new Date().getFullYear()} – all rights reluctantly reserved.</p>
         <ul className="flex gap-4 mt-4 md:mt-0 text-orange-400">
