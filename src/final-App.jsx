@@ -54,10 +54,38 @@ export default function App() {
               <span className="text-pink-500">●</span> imlost<span className="text-orange-500">.ai</span>
             </div>
             <ul className="flex gap-8 text-sm font-medium">
-              <li><NavLink to="/" className={({ isActive }) => \`relative pb-1 transition-all duration-300 ease-in-out \${isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'} group\`}>Home<span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span></NavLink></li>
-              <li><NavLink to="/about" className={({ isActive }) => \`relative pb-1 transition-all duration-300 ease-in-out \${isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'} group\`}>About<span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span></NavLink></li>
-              <li><NavLink to="/services" className={({ isActive }) => \`relative pb-1 transition-all duration-300 ease-in-out \${isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'} group\`}>Services<span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span></NavLink></li>
-              <li><NavLink to="/quiz" className={({ isActive }) => \`relative pb-1 transition-all duration-300 ease-in-out \${isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'} group\`}>Quiz<span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span></NavLink></li>
+              <li>
+                <NavLink to="/" className={({ isActive }) =>
+                  `relative pb-1 transition-all duration-300 ease-in-out ${isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'} group`
+                }>
+                  Home
+                  <span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/about" className={({ isActive }) =>
+                  `relative pb-1 transition-all duration-300 ease-in-out ${isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'} group`
+                }>
+                  About
+                  <span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/services" className={({ isActive }) =>
+                  `relative pb-1 transition-all duration-300 ease-in-out ${isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'} group`
+                }>
+                  Services
+                  <span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/quiz" className={({ isActive }) =>
+                  `relative pb-1 transition-all duration-300 ease-in-out ${isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'} group`
+                }>
+                  Quiz
+                  <span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span>
+                </NavLink>
+              </li>
             </ul>
           </div>
         </nav>
