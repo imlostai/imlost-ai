@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../assets/logo.svg'; // Replace with actual path if needed
 
 const headlines = [
   "We had a plan. Then the intern posted something better.",
