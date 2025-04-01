@@ -50,7 +50,7 @@ export default function Home() {
                 className="absolute w-10 h-10 md:w-14 md:h-14 bg-pink-500 rounded-full blur-2xl opacity-60 z-0"
                 animate={{ scale: [1, 1.4, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
-                style={{ left: '-28px', top: '-5' }}
+                style={{ left: '-24px', top: '-15' }}
               />
               <motion.img
                 src={logo}
