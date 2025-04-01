@@ -8,18 +8,9 @@ import Services from './pages/Services';
 import LostLab from './pages/LostLab';
 
 const pageVariants = {
-  initial: {
-    opacity: 0,
-    y: 20
-  },
-  in: {
-    opacity: 1,
-    y: 0
-  },
-  out: {
-    opacity: 0,
-    y: -20
-  }
+  initial: { opacity: 0, y: 20 },
+  in: { opacity: 1, y: 0 },
+  out: { opacity: 0, y: -20 }
 };
 
 const pageTransition = {
@@ -31,40 +22,23 @@ const pageTransition = {
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-white font-sans">
-      <nav className="flex justify-center space-x-6 py-6 border-b border-white/10">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `relative pb-1 transition-all duration-300 ease-in-out ${
-              isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'
-            } group`
-          }
-        >
-          Home
-          <span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span>
+      <nav className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-black border-b border-white/10">
+        <NavLink to="/" className="flex items-center space-x-2">
+          <motion.img
+            src="/logo-glow.png"
+            alt="imlost.ai logo"
+            className="h-8 w-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          />
         </NavLink>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            `relative pb-1 transition-all duration-300 ease-in-out ${
-              isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'
-            } group`
-          }
-        >
-          About
-          <span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span>
-        </NavLink>
-        <NavLink
-          to="/services"
-          className={({ isActive }) =>
-            `relative pb-1 transition-all duration-300 ease-in-out ${
-              isActive ? 'text-pink-400' : 'text-orange-400 hover:text-white'
-            } group`
-          }
-        >
-          Services
-          <span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 transition-transform bg-pink-500 origin-left"></span>
-        </NavLink>
+        <ul className="flex gap-6 text-sm font-medium text-orange-400">
+          <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-pink-400' : 'hover:text-white'}>Home</NavLink></li>
+          <li><NavLink to="/about" className={({ isActive }) => isActive ? 'text-pink-400' : 'hover:text-white'}>About</NavLink></li>
+          <li><NavLink to="/services" className={({ isActive }) => isActive ? 'text-pink-400' : 'hover:text-white'}>Services</NavLink></li>
+          <li><NavLink to="/lab" className={({ isActive }) => isActive ? 'text-pink-400' : 'hover:text-white'}>Lost Lab</NavLink></li>
+        </ul>
       </nav>
 
       <Routes>
@@ -86,9 +60,8 @@ export default function App() {
         <Route path="/lab" element={
           <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
             <LostLab />
-         </motion.div>
+          </motion.div>
         } />
-
       </Routes>
     </div>
   );
