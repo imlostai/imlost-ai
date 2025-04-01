@@ -9,7 +9,8 @@
   "dependencies": {
     "framer-motion": "^12.6.3",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^7.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.0",
