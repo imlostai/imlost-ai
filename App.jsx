@@ -99,6 +99,68 @@ function CrisisQuiz() {
     </section>
   );
 }
+function CrisisQuiz() {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [result, setResult] = useState(null);
+
+  const handleAnswer = (answer) => {
+    const updated = [...answers, answer];
+    setAnswers(updated);
+    if (step + 1 < questions.length) {
+      setStep(step + 1);
+    } else {
+      generateResult(updated);
+    }
+  };
+
+  const generateResult = (responses) => {
+    const chaosScore = responses.filter(r => r.includes("chaos") || r.includes("mess") || r.includes("TikTok")).length;
+    const cultScore = responses.filter(r => r.includes("Cult") || r.includes("joined") || r.includes("movement")).length;
+
+    if (cultScore >= 2) {
+      setResult("You’re building a brand cult. Congrats. Just don’t forget the merch.");
+    } else if (chaosScore >= 2) {
+      setResult("You’re fueled by chaos and TikTok trends. We respect the hustle (barely).");
+    } else {
+      setResult("You’re a wandering founder with good taste. You’ll be fine. Probably.");
+    }
+  };
+
+  return (
+    <section id="quiz" className="px-6 py-20 bg-black border-t border-neutral-800">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-4 text-white">Brand Identity Crisis Generator™</h2>
+        <p className="text-white/70 text-lg mb-8">Answer a few chaotic questions and we’ll tell you who you *really* are. Maybe.</p>
+        {result ? (
+          <motion.div
+            className="bg-neutral-900 p-6 rounded-2xl border border-neutral-700 text-white max-w-xl mx-auto"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <h3 className="text-2xl font-semibold mb-2">Crisis Profile:</h3>
+            <p>{result}</p>
+          </motion.div>
+        ) : (
+          <div>
+            <h3 className="text-xl font-semibold text-orange-400 mb-4">{questions[step].question}</h3>
+            <div className="flex flex-col gap-4">
+              {questions[step].options.map((option, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleAnswer(option)}
+                  className="bg-neutral-800 hover:bg-orange-500 text-white px-4 py-3 rounded-xl transition-colors"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
 
 function App() {
   const [currentHeadline, setCurrentHeadline] = useState(headlines[0]);
@@ -125,6 +187,7 @@ function App() {
           <li><a href="#quiz">Quiz</a></li>
           <li><a href="#cta">Contact</a></li>
         </ul>
+
       </nav>
 
       <CrisisQuiz />
