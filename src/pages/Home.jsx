@@ -1,3 +1,4 @@
+import logo from '../assets/logo.png';
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -46,11 +47,30 @@ export default function Home() {
               transition={{ duration: 1 }}
             >
               <motion.div
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 animate-pulse"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.8 }}
-              />
+  className="relative flex justify-center items-center"
+  initial={{ opacity: 1 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+>
+  {/* Glowing Pink Dot Behind */}
+  <motion.div
+    className="absolute w-10 h-10 md:w-14 md:h-14 bg-pink-500 rounded-full blur-2xl opacity-60 z-0"
+    animate={{ scale: [1, 1.4, 1] }}
+    transition={{ repeat: Infinity, duration: 2 }}
+    style={{ left: '-30px', top: '0' }} // tweak this to align with your logo's dot
+  />
+
+  {/* Your Actual Logo Image */}
+  <motion.img
+    src={logo}
+    alt="imlost.ai logo"
+    className="relative z-10 w-40 md:w-64"
+    initial={{ scale: 0 }}
+    animate={{ scale: 1.2 }}
+    exit={{ scale: 0.5, opacity: 0 }}
+    transition={{ duration: 1 }}
+  />
+</motion.div>
               imlost<span className="text-orange-500">.ai</span>
             </motion.div>
           </motion.div>
