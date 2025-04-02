@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import CrisisQuiz from '../components/CrisisQuiz';
 
 const headlines = [
   "We had a plan. Then the intern posted something better.",
@@ -33,15 +32,13 @@ export default function Home() {
         {currentHeadline}
       </motion.h1>
       <motion.p
-        className="text-white/70 max-w-xl mx-auto mb-16"
+        className="text-white/70 max-w-xl mx-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
         We’re not lost. Just exploring aggressively. imlost.ai is your sarcastic, strategic, and AI-fueled partner in brand rebellion.
       </motion.p>
-
-      <CrisisQuiz />
     </main>
   );
 }

@@ -1,9 +1,10 @@
 import React from 'react';
+import CrisisQuiz from '../components/CrisisQuiz';
 
 export default function Quiz() {
   return (
-    <div className="h-screen flex justify-center items-center text-white">
-      Crisis Generator™ coming soon... 👀
-    </div>
+    <main className="min-h-screen bg-black text-white py-20 px-8">
+      <CrisisQuiz />
+    </main>
   );
 }
